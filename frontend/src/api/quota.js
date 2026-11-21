@@ -1,0 +1,12 @@
+import{api,post}from'./client.js';
+export const listSites=()=>api('/quota/sites');
+export const createSite=data=>post('/quota/sites',data);
+export const listLimits=id=>api(`/quota/sites/${id}/limits`);
+export const putLimit=(id,data)=>api(`/quota/sites/${id}/limits`,{method:'PUT',body:JSON.stringify(data)});
+export const deleteLimit=(id,limitId)=>api(`/quota/sites/${id}/limits/${limitId}`,{method:'DELETE'});
+export const listBatches=id=>api(`/quota/sites/${id}/batches`);
+export const submitBatch=(id,data)=>post(`/quota/sites/${id}/batches`,data);
+export const getKeys=(id,prefix)=>api(`/quota/sites/${id}/keys${prefix?`?prefix=${encodeURIComponent(prefix)}`:''}`);
+export const getLogs=id=>api(`/quota/sites/${id}/logs`);
+export const compactSite=id=>post(`/quota/sites/${id}/compact`,{});
+export const listCompactions=id=>api(`/quota/sites/${id}/compactions`);
